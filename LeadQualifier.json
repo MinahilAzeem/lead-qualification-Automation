@@ -1,0 +1,249 @@
+{
+  "name": "LeadQualifier",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "26b8deb6-2c02-4253-8900-5c8c7a8bd1a9",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -416,
+        -96
+      ],
+      "id": "8db47620-0361-4437-afdc-7a7399147430",
+      "name": "Webhook",
+      "webhookId": "26b8deb6-2c02-4253-8900-5c8c7a8bd1a9"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are a lead qualification AI. A potential client submitted a contact form.\n\nName: {{ $('Webhook').item.json.body.name }}\nEmail: {{ $('Webhook').item.json.body.email }}\nMessage: {{ $('Webhook').item.json.body.message }}\nBudget: {{ $('Webhook').item.json.body.budget }}\nTimeline: {{ $('Webhook').item.json.body.timeline }}\n\nScore this lead as HOT, WARM, or COLD.\n\nRules:\n- HOT = budget $2000+, clear problem, urgency within 1 month\n- WARM = budget $500-2000, some urgency or strong intent  \n- COLD = low budget, vague message, or just exploring\n\nRespond in this JSON format only, no extra text, no markdown:\n{\n  \"score\": \"HOT\",\n  \"reason\": \"One sentence explaining why\",\n  \"email_opener\": \"Hi [Name], personalized opening line for follow-up email\"\n}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        -240,
+        -96
+      ],
+      "id": "27fa327f-c7de-450a-bdc5-5e7605e151df",
+      "name": "Message a model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "cRW41Z4viVTIm3Ax",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Webhook').item.json.body.email }}",
+        "subject": "=Re: Your inquiry, {{ $('Webhook').item.json.body.name }}",
+        "message": "={{ $('Message a model').item.json.content.parts[0].text.match(/\"email_opener\":\\s*\"([^\"]+)\"/)[1] }}\n\nThank you for reaching out. Based on what you shared, we think we can help you.\n\nWe'd love to schedule a quick call to understand your needs better.\n\nReply to this email or book a time directly.\n\nBest regards,\nYour AI Agency",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        64,
+        -96
+      ],
+      "id": "9d2325d7-7397-450f-a1d7-9579d19a29a8",
+      "name": "Send a message",
+      "webhookId": "af7ade64-1f2c-48d6-b22d-e16ca42f750b",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "AzkfMbVGiAgxkfIi",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1MDpLUlaw88016l9-ivg7nkn0qwxhXZDvFkrYqGBxCZg",
+          "mode": "list",
+          "cachedResultName": "LeadIQ Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MDpLUlaw88016l9-ivg7nkn0qwxhXZDvFkrYqGBxCZg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MDpLUlaw88016l9-ivg7nkn0qwxhXZDvFkrYqGBxCZg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $('Webhook').item.json.body.name }}",
+            "Email": "={{ $('Webhook').item.json.body.email }}",
+            "Message": "={{ $('Webhook').item.json.body.message }}",
+            "Budget": "={{ $('Webhook').item.json.body.budget }}",
+            "Timeline": "={{ $('Webhook').item.json.body.timeline }}",
+            "Score": "={{ $('Message a model').item.json.content.parts[0].text.match(/\"score\":\\s*\"([^\"]+)\"/)[1] }}",
+            "Reason": "={{ $('Message a model').item.json.content.parts[0].text.match(/\"reason\":\\s*\"([^\"]+)\"/)[1] }}",
+            "Date": "={{ $now.format('dd/MM/yyyy HH:mm')}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Message",
+              "displayName": "Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Budget",
+              "displayName": "Budget",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Timeline",
+              "displayName": "Timeline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Score",
+              "displayName": "Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reason",
+              "displayName": "Reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        272,
+        -96
+      ],
+      "id": "6ee59037-b580-4ce1-b640-a45a46291afa",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "A9OhIaaYg8MOaElR",
+          "name": "Google Sheets account 4"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "3f3feae8-df8a-4553-a7ef-7912cbad5072",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3c9794a52d31698f7103ce71ad2f1d16ea34a1b6acf82b3fae2fadfa83af7ec6"
+  },
+  "id": "80eh31v5xYQXYj8N",
+  "tags": []
+}
