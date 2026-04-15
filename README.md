@@ -145,13 +145,16 @@ Name | Email | Message | Budget | Timeline | Score | Reason | Date
 ---
 
 ## About
-```
-Built by **Minahil** 
-I build AI-powered automation systems for small businesses that save time and increase revenue.
 
-**Contact:** minahilazeembscs@gmail.com
-**LinkedIn:** [your LinkedIn URL here]
+Built by **Minahil** 
 ```
+I build AI-powered automation systems for small businesses that save time and increase revenue.
+```
+
+**Contact:** minahilazeembscs@gmail.com 
+```  ```
+**LinkedIn:** [your LinkedIn URL here]
+
 
 ---
 
