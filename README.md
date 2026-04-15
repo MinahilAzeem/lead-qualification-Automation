@@ -131,21 +131,6 @@ Name | Email | Message | Budget | Timeline | Score | Reason | Date
 2. Submit the contact form
 3. Watch the lead appear in your sheet within 2 minutes
 
----
-
-## Business Model
-
-This system can be delivered to clients in two ways:
-
-**Model A — Custom setup inside client accounts**
-- Build the workflow inside the client's own n8n/Make account
-- Connect to their Gmail, Sheets, Slack
-- Charge: $300–500 setup + $100–150/month maintenance
-
-**Model B — SaaS access to LeadIQ**
-- Client gets login to the hosted LeadIQ app
-- Leads flow into their dedicated Google Sheet
-- Charge: $99–199/month recurring
 
 ---
 
@@ -161,10 +146,10 @@ This system can be delivered to clients in two ways:
 
 ## About
 
-Built by **Minahil** — AI Automation Agency Owner based in Pakistan.  
+Built by **Minahil** 
 I build AI-powered automation systems for small businesses that save time and increase revenue.
 
-**Contact:** aallahisone816@gmail.com  
+**Contact:** minahilazeembscs@gmail.com
 **LinkedIn:** [your LinkedIn URL here]
 
 ---
