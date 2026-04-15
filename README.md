@@ -109,7 +109,7 @@ leadiq/
 ### Step 1 — Import the workflow
 1. Open your n8n instance
 2. Click **Workflows → Import**
-3. Upload `workflow/leadiq-n8n-workflow.json`
+3. Upload `workflow/leadQualifier.json`
 
 ### Step 2 — Add credentials
 In n8n, add these credentials:
@@ -145,12 +145,13 @@ Name | Email | Message | Budget | Timeline | Score | Reason | Date
 ---
 
 ## About
-
+'''
 Built by **Minahil** 
 I build AI-powered automation systems for small businesses that save time and increase revenue.
 
 **Contact:** minahilazeembscs@gmail.com
 **LinkedIn:** [your LinkedIn URL here]
+'''
 
 ---
 
