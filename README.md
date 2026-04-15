@@ -152,8 +152,7 @@ I build AI-powered automation systems for small businesses that save time and in
 ```
 
 **Contact:** minahilazeembscs@gmail.com 
-```  
-```
+```                                        ```
 **LinkedIn:** [your LinkedIn URL here]
 
 
