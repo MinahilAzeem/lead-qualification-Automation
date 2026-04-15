@@ -151,8 +151,7 @@ Built by **Minahil**
 I build AI-powered automation systems for small businesses that save time and increase revenue.
 ```
 
-**Contact:** minahilazeembscs@gmail.com 
-```                                        ```
+**Contact:** minahilazeembscs@gmail.com                                       
 **LinkedIn:** [your LinkedIn URL here]
 
 
