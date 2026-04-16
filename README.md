@@ -7,7 +7,8 @@
 ## Live Demo
 
 - **Web App:** [LeadIQ on Lovable](https://5431e449-2c16-40a3-ae77-2fda2f879c62.lovableproject.com)
-- **Demo Video:** [Watch 3-min walkthrough on Loom] (https://www.loom.com/share/3cf67fed7a1147a8b9acbd3ce70f87ca)
+- **Demo Video:** [Watch 3-min walkthrough on Loom]
+- https://www.loom.com/share/3cf67fed7a1147a8b9acbd3ce70f87ca
 
 ---
 
