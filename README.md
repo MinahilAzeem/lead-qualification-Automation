@@ -1,6 +1,6 @@
 # LeadIQ — AI Lead Qualification System
 
-> Automatically qualifies every inbound lead in under 2 minutes using AI — scores them Hot, Warm, or Cold, sends a personalized follow-up email, and logs everything to a dashboard. Built as a portfolio project for my AI automation agency.
+> Automatically qualifies every inbound lead in under 2 minutes using AI and scores them Hot, Warm, or Cold, sends a personalized follow-up email, and logs everything to a dashboard. Built as a portfolio project for my AI automation agency.
 
 ---
 
